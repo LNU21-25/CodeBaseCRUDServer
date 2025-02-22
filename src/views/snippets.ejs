@@ -1,0 +1,23 @@
+<% layout('layout') %>
+  <h1>All Snippets</h1>
+  <% if (user) { %>
+    <a href="/snippets/new">Create New Snippet</a>
+    <% } %>
+      <ul>
+        <% snippets.forEach(snippet=> { %>
+          <li>
+            <h2>
+              <%= snippet.title %>
+            </h2>
+            <pre><%= snippet.code %></pre>
+            <p>By: <%= snippet.owner.username %>
+            </p>
+            <% if (user && snippet.owner._id.toString()===user.id) { %>
+              <a href="/snippets/edit/<%= snippet._id %>">Edit</a>
+              <form action="/snippets/delete/<%= snippet._id %>" method="POST" style="display:inline">
+                <button type="submit">Delete</button>
+              </form>
+              <% } %>
+          </li>
+          <% }) %>
+      </ul>

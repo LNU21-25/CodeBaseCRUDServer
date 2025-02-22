@@ -1,0 +1,17 @@
+<% layout('layout') %>
+  <h1>
+    <%= snippet._id ? 'Edit' : 'Create' %> Snippet
+  </h1>
+  <form action="<%= snippet._id ? '/snippets/edit/' + snippet._id : '/snippets/new' %>" method="POST">
+    <div>
+      <label>Title</label>
+      <input type="text" name="title" value="<%= snippet.title || '' %>" required>
+    </div>
+    <div>
+      <label>Code</label>
+      <textarea name="code" rows="10" required><%= snippet.code || '' %></textarea>
+    </div>
+    <button type="submit">
+      <%= snippet._id ? 'Update' : 'Create' %> Snippet
+    </button>
+  </form>

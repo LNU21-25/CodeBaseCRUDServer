@@ -1,5 +1,5 @@
 // src/controllers/snippetController.js
-import Snippet from '../models/Snippet.js'
+import Snippet from '../models/snippet.js'
 
 export const getAllSnippets = async (req, res) => {
   try {
