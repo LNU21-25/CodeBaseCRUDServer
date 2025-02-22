@@ -1,31 +1,68 @@
+// server.js
 import express from 'express'
 import session from 'express-session'
-import mongoose from 'mongoose'
 import flash from 'connect-flash'
+import path from 'path'
+import { fileURLToPath } from 'url'
 import authRoutes from './src/routes/authRoutes.js'
 import snippetRoutes from './src/routes/snippetRoutes.js'
 import { connectDB } from './src/config/db.js'
 
 const app = express()
-connectDB() // Connect to MongoDB
 
+// Determine __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+// Connect to MongoDB
+connectDB()
+
+// Set up EJS view engine
+app.set('views', path.join(__dirname, 'src', 'views'))
 app.set('view engine', 'ejs')
+
+// Middleware to parse form data and serve static files
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 
+// Set up session storage and flash messages
 app.use(session({
-  secret: 'your_secret_key',
+  secret: process.env.SESSION_SECRET || 'your_secret_key',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 }))
-
 app.use(flash())
 
+// Custom middleware: expose flash messages and user data to views
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.error_msg = req.flash('error_msg')
+  res.locals.error = req.flash('error')
+  res.locals.user = req.session.user || null
+  next()
+})
+
+// Routes for authentication and snippets
 app.use('/auth', authRoutes)
 app.use('/snippets', snippetRoutes)
 
-app.use((req, res) => res.status(404).send('Not Found'))
-app.use((err, req, res, next) => res.status(500).send('Internal Server Error'))
+// Redirect root to snippets list
+app.get('/', (req, res) => {
+  res.redirect('/snippets')
+})
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).render('404', { title: '404 Not Found' })
+})
+
+// Error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).render('500', { title: '500 Internal Server Error' })
+})
 
 const PORT = process.env.PORT || 3000
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
