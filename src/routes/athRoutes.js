@@ -2,6 +2,7 @@
 import express from 'express'
 import { getRegister, postRegister, getLogin, postLogin, logout } from '../controllers/authController.js'
 
+// defines auth endpoints
 const router = express.Router()
 
 router.get('/register', getRegister)

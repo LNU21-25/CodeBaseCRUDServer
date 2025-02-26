@@ -10,6 +10,7 @@ import {
 } from '../controllers/snippetController.js'
 import { isAuthenticated } from '../middleware/authMiddleware.js'
 
+// defines CRUD endpoints for snippets
 const router = express.Router()
 
 // Public route: view all snippets
