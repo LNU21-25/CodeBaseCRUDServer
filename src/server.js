@@ -3,6 +3,7 @@ import session from 'express-session'
 import flash from 'connect-flash'
 import path from 'path'
 import dotenv from 'dotenv'
+import expressLayouts from 'express-ejs-layouts'
 import { fileURLToPath } from 'url'
 import authRoutes from './routes/authRoutes.js'
 import snipRoutes from './routes/snipRoutes.js'
@@ -18,9 +19,11 @@ const __dirname = path.dirname(__filename)
 // Connect to MongoDB
 connectDB()
 
-// Set up EJS view engine
+// Set up EJS view engine with layouts
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
+app.use(expressLayouts) // Add this line
+app.set('layout', 'layout') // Add this line to specify your layout file
 
 // Middleware to parse form data and serve static files
 app.use(express.urlencoded({ extended: true }))
@@ -30,7 +33,12 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(session({
   secret: process.env.SESSION_SECRET || 'your_secret_key',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { // Add these security settings
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 24 * 60 * 60 * 1000 // 1 day
+  }
 }))
 app.use(flash())
 
