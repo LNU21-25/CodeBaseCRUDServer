@@ -3,8 +3,9 @@ import mongoose from 'mongoose'
 
 export const connectDB = async () => {
   try {
+    console.log('Connecting to MongoDB...')
     // Use the connection string from environment variables or fallback to local MongoDB.
-    const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/snippet_app'
+    const uri = process.env.MONGO_URI
     await mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true

@@ -1,4 +1,4 @@
-// src/routes/snippetRoutes.js
+// src/routes/snipRoutes.js
 import express from 'express'
 import {
   getAllSnippets,
@@ -7,8 +7,8 @@ import {
   getEditSnippet,
   postEditSnippet,
   deleteSnippet
-} from '../controllers/snippetController.js'
-import { isAuthenticated } from '../middleware/authMiddleware.js'
+} from '../controllers/snipCont.js'
+import { isAuthenticated } from '../middleware/authMid.js'
 
 // defines CRUD endpoints for snippets
 const router = express.Router()

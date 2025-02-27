@@ -1,6 +1,6 @@
 // src/routes/authRoutes.js
 import express from 'express'
-import { getRegister, postRegister, getLogin, postLogin, logout } from '../controllers/authController.js'
+import { getRegister, postRegister, getLogin, postLogin, logout } from '../controllers/authCont.js'
 
 // defines auth endpoints
 const router = express.Router()

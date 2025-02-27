@@ -1,13 +1,13 @@
-// server.js
 import express from 'express'
 import session from 'express-session'
 import flash from 'connect-flash'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import authRoutes from './src/routes/authRoutes.js'
-import snippetRoutes from './src/routes/snippetRoutes.js'
-import { connectDB } from './src/config/db.js'
+import authRoutes from './routes/authRoutes.js'
+import snipRoutes from './routes/snipRoutes.js'
+import { connectDB } from './config/db.js'
 
+console.log('Starting Express server...')
 const app = express()
 
 // Determine __dirname in ES modules

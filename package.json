@@ -2,8 +2,11 @@
   "name": "crud",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "server.js",
+  
   "scripts": {
+    "start": "node src/server.js",
     "http-server": "npx http-server -p 9001",
     "dev": "vite",
     "build": "vite build",
@@ -38,6 +41,7 @@
     "htmlhint": "^1.1.4",
     "http-server": "^14.1.1",
     "jsdoc": "^4.0.4",
+    "nodemon": "^3.1.9",
     "stylelint": "^16.14.1",
     "stylelint-config-recommended": "^15.0.0",
     "vite": "^6.1.1"
