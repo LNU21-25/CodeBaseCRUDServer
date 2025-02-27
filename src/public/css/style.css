@@ -1,35 +1,72 @@
-/* public/css/style.css */
+/* Main styling for Code Snippets App */
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-  background: #f4f4f4;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-header {
-  background: #333;
-  color: #fff;
-  padding: 10px 20px;
+.navbar {
   margin-bottom: 20px;
 }
 
-header nav a {
-  color: #fff;
-  margin-right: 10px;
-  text-decoration: none;
+.snippet-code {
+  font-family: monospace;
+  white-space: pre-wrap;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
 }
 
-.flash {
-  padding: 10px;
-  margin-bottom: 10px;
+.flash-messages {
+  margin-top: 20px;
 }
 
-.flash.success {
-  background: #d4edda;
-  color: #155724;
+/* Card styling */
+.card {
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.flash.error {
-  background: #f8d7da;
-  color: #721c24;
+.card-header {
+  background-color: #f8f9fa;
+}
+
+/* Form controls */
+.form-control:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Button styling */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+/* Error and success messages */
+.alert {
+  border-radius: 4px;
+}
+
+/* Snippet specific styles */
+pre.snippet-code {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-footer .d-flex {
+    flex-direction: column;
+  }
+  
+  .card-footer .btn {
+    margin-bottom: 5px;
+    width: 100%;
+  }
 }

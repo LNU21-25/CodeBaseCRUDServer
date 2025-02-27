@@ -1,17 +1,28 @@
-<%- include('layout') %>
-  <h1>
-    <%= snippet._id ? 'Edit' : 'Create' %> Snippet
-  </h1>
-  <form action="<%= snippet._id ? '/snippets/edit/' + snippet._id : '/snippets/new' %>" method="POST">
-    <div>
-      <label>Title</label>
-      <input type="text" name="title" value="<%= snippet.title || '' %>" required>
+<%- include('layout', { title: snippet._id ? 'Edit Snippet' : 'Create Snippet' , body: ` <div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div class="card">
+      <div class="card-header">
+        <h2>
+          <%= snippet._id ? 'Edit Snippet' : 'Create New Snippet' %>
+        </h2>
+      </div>
+      <div class="card-body">
+        <form action="<%= snippet._id ? '/snippets/edit/' + snippet._id : '/snippets/new' %>" method="POST">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="<%= snippet.title || '' %>" required>
+          </div>
+          <div class="mb-3">
+            <label for="code" class="form-label">Code</label>
+            <textarea class="form-control" id="code" name="code" rows="10" required><%= snippet.code || '' %></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <%= snippet._id ? 'Update' : 'Create' %> Snippet
+          </button>
+          <a href="/snippets" class="btn btn-secondary">Cancel</a>
+        </form>
+      </div>
     </div>
-    <div>
-      <label>Code</label>
-      <textarea name="code" rows="10" required><%= snippet.code || '' %></textarea>
-    </div>
-    <button type="submit">
-      <%= snippet._id ? 'Update' : 'Create' %> Snippet
-    </button>
-  </form>
+  </div>
+  </div>
+  ` }) %>

@@ -4,6 +4,7 @@
   "description": "",
   "type": "module",
   "main": "server.js",
+  
   "scripts": {
     "start": "node src/server.js",
     "http-server": "npx http-server -p 9001",
@@ -24,7 +25,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "express-session": "^1.17.3",

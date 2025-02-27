@@ -93,7 +93,7 @@ export const deleteSnippet = async (req, res) => {
       req.flash('error_msg', 'Not authorized')
       return res.status(403).redirect('/snippets')
     }
-    await snippet.remove()
+    await snippet.deleteOne()
     req.flash('success_msg', 'Snippet deleted successfully')
     res.redirect('/snippets')
   } catch (err) {

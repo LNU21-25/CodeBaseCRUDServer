@@ -1,4 +1,4 @@
-// src/controllers/authController.js
+// src/controllers/authCont.js
 import User from '../models/user.js'
 
 export const getRegister = (req, res) => {
