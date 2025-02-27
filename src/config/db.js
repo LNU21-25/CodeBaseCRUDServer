@@ -6,10 +6,7 @@ export const connectDB = async () => {
     console.log('Connecting to MongoDB...')
     // Use the connection string from environment variables or fallback to local MongoDB.
     const uri = process.env.MONGO_URI
-    await mongoose.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
+    await mongoose.connect(uri)
     console.log('MongoDB connected')
   } catch (err) {
     console.error('MongoDB connection error:', err)

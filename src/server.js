@@ -2,13 +2,14 @@ import express from 'express'
 import session from 'express-session'
 import flash from 'connect-flash'
 import path from 'path'
+import dotenv from 'dotenv'
 import { fileURLToPath } from 'url'
 import authRoutes from './routes/authRoutes.js'
 import snipRoutes from './routes/snipRoutes.js'
 import { connectDB } from './config/db.js'
 
-console.log('Starting Express server...')
 const app = express()
+dotenv.config()
 
 // Determine __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url)
@@ -18,7 +19,7 @@ const __dirname = path.dirname(__filename)
 connectDB()
 
 // Set up EJS view engine
-app.set('views', path.join(__dirname, 'src', 'views'))
+app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 // Middleware to parse form data and serve static files
@@ -44,7 +45,7 @@ app.use((req, res, next) => {
 
 // Routes for authentication and snippets
 app.use('/auth', authRoutes)
-app.use('/snippets', snippetRoutes)
+app.use('/snippets', snipRoutes)
 
 // Redirect root to snippets list
 app.get('/', (req, res) => {
