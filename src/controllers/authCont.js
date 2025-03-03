@@ -6,8 +6,8 @@ export const getRegister = (req, res) => {
 }
 
 export const postRegister = async (req, res) => {
-  const { username, password, confirmPassword } = req.body
-  if (password !== confirmPassword) {
+  const { username, password, confirmPass } = req.body
+  if (password !== confirmPass) {
     req.flash('error_msg', 'Passwords do not match')
     return res.redirect('/auth/register')
   }
