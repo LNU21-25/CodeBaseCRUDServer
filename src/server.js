@@ -22,8 +22,8 @@ connectDB()
 // Set up EJS view engine with layouts
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
-app.use(expressLayouts) // Add this line
-app.set('layout', 'layout') // Add this line to specify your layout file
+app.use(expressLayouts)
+app.set('layout', 'layout')
 
 // Middleware to parse form data and serve static files
 app.use(express.urlencoded({ extended: true }))
@@ -35,7 +35,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: { // Add these security settings
-    httpOnly: true,
+    ttpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     maxAge: 24 * 60 * 60 * 1000 // 1 day
   }
